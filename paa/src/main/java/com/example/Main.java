@@ -1,39 +1,44 @@
 package com.example;
 
-import com.example.algoritmos.BubbleSort;
-import com.example.algoritmos.InsertionSort;
-import com.example.algoritmos.SelectionSort;
+import com.example.sorts.BubbleSort;
+import com.example.sorts.InsertionSort;
+import com.example.sorts.SelectionSort;
+import com.example.sorts.times.BubbleSortTime;
+import com.example.sorts.times.InsertionSortTime;
+import com.example.sorts.times.SelectionSortTime;
 
 public class Main {
       public static void main(String[] args) {
 
         ArrayGenerator arr = new ArrayGenerator();
-        InsertionSort insertionSort = new InsertionSort();
-        BubbleSort bubbleSort = new BubbleSort();
-        SelectionSort selectionSort = new SelectionSort();
 
         // Gera os 30 arrays
         int[][] arrays = arr.generateArrays();
 
-        for (int i = 0; i < 30; i++) {
-            
-            insertionSort.sort(arrays[i]);
-            
-        }
+        //Insertion sort
+        InsertionSortTime insertionSortTime = new InsertionSortTime(
+            arrays, new InsertionSort()
+        );
+        insertionSortTime.calcularTempo();
+        insertionSortTime.exibirTabelas();
 
-        for (int i = 0; i < 30; i++) {
-            
-            bubbleSort.sort(arrays[i]);
-            
-        }
+        //Bubble sort
+        BubbleSortTime bubbleSortTime = new BubbleSortTime(
+            arrays, new BubbleSort()
+        );
+        bubbleSortTime.calcularTempo();
+        bubbleSortTime.exibirTabelas();
 
-        for (int i = 0; i < 30; i++) {
-            
-            selectionSort.sort(arrays[i]);
-            
-        }
+        //Selection sort
+        SelectionSortTime selectionSortTime = new SelectionSortTime(
+            arrays, new SelectionSort()
+        );
+        selectionSortTime.calcularTempo();
+        selectionSortTime.exibirTabelas();
 
-        System.out.println("terminei");
+        
+        
+      
 
     }
 }

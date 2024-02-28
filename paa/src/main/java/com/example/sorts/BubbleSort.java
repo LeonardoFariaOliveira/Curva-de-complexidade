@@ -1,7 +1,8 @@
-package com.example.algoritmos;
+package com.example.sorts;
 
-public class BubbleSort {
+public class BubbleSort implements ISort {
     
+    @Override
     public int[] sort(int[] array){
 
         int tamanhoArray = array.length;

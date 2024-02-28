@@ -1,7 +1,8 @@
-package com.example.algoritmos;
+package com.example.sorts;
 
-public class InsertionSort {
+public class InsertionSort implements ISort {
 
+    @Override
     public int[] sort(int[] array) {
 
         //recebe o tamanho do array
