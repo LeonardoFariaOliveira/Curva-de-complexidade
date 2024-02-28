@@ -3,42 +3,46 @@ package com.example;
 import com.example.sorts.BubbleSort;
 import com.example.sorts.InsertionSort;
 import com.example.sorts.SelectionSort;
-import com.example.sorts.times.BubbleSortTime;
-import com.example.sorts.times.InsertionSortTime;
-import com.example.sorts.times.SelectionSortTime;
+import com.example.sorts.calc.SortTimeCalc;
 
 public class Main {
       public static void main(String[] args) {
 
+        //Instancia a classe responsável por gerar os vetores com as entradas
         ArrayGenerator arr = new ArrayGenerator();
 
-        // Gera os 30 arrays
+        // Gera os arrays
         int[][] arrays = arr.generateArrays();
 
+
+/*
+        Instancio a classe responsavel pelo calculo do tempo passando
+        os arrays e a uma instancia do algoritmo de sort que quero executar
+*/
+
         //Insertion sort
-        InsertionSortTime insertionSortTime = new InsertionSortTime(
-            arrays, new InsertionSort()
+        SortTimeCalc insertionSortTime = new SortTimeCalc(
+        arrays,
+        new InsertionSort()
         );
         insertionSortTime.calcularTempo();
-        insertionSortTime.exibirTabelas();
+        insertionSortTime.exibirTabelas("Insertion");
 
         //Bubble sort
-        BubbleSortTime bubbleSortTime = new BubbleSortTime(
-            arrays, new BubbleSort()
+        SortTimeCalc bubbleSortTime = new SortTimeCalc(
+        arrays,
+        new BubbleSort()
         );
         bubbleSortTime.calcularTempo();
-        bubbleSortTime.exibirTabelas();
+        bubbleSortTime.exibirTabelas("Bubble");
 
         //Selection sort
-        SelectionSortTime selectionSortTime = new SelectionSortTime(
-            arrays, new SelectionSort()
+        SortTimeCalc selectionSortTime = new SortTimeCalc(
+        arrays, 
+        new SelectionSort()
         );
         selectionSortTime.calcularTempo();
-        selectionSortTime.exibirTabelas();
-
-        
-        
-      
+        selectionSortTime.exibirTabelas("Selection");
 
     }
 }

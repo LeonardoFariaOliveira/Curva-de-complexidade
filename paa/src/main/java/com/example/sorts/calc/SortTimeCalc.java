@@ -1,29 +1,42 @@
-package com.example.sorts.times;
+package com.example.sorts.calc;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.sorts.ISort;
 
-import com.example.sorts.BubbleSort;
+public class SortTimeCalc implements ICalc {
 
-public class BubbleSortTime implements ITime {
+    //Lista dos tempos medios de execução de cada vetor ao executar 30 vezes
     public List<Double> tabelaTempo;
-    public List<Integer> tabelaTamanho;
-    public int[][] arrays;
-    public BubbleSort bubbleSort;
 
-    public BubbleSortTime(
+    //Lista com o tamanho das entradas usadas na medição de tempo
+    public List<Integer> tabelaTamanho;
+
+    //Array que será usado
+    public int[][] arrays;
+
+    //Classe que receberá a instancia do algoritmo para ordenar
+    public ISort sort;
+
+    
+    public SortTimeCalc(
         int[][] _arrays,
-        BubbleSort _bubbleSort
+        ISort _sort
     ){
         this.tabelaTamanho = new ArrayList<>();
         this.tabelaTempo = new ArrayList<>();
         this.arrays = _arrays;
-        this.bubbleSort = _bubbleSort;
+        this.sort = _sort;
     }
-
+/*
+    Função que irá calcular o tempo com base em:
+        -Na subtração do tempo inicial - final
+        -Na media dos tempos de cada vetor
+*/
     @Override
     public void calcularTempo(){
-
+        
+        //20 é relativo aos vetores (100.000 / 5000 = 20)
         for (int i = 0; i < 19; i++) {
 
             double somaTempoTotal = 0;
@@ -31,7 +44,7 @@ public class BubbleSortTime implements ITime {
             for(int j = 0; j < 30; j++){
 
                 var tempoInicio = System.currentTimeMillis();
-                this.bubbleSort.sort(this.arrays[i]);
+                this.sort.sort(this.arrays[i]);
                 var tempoFim = System.currentTimeMillis();
                 var tempoTotal = tempoFim - tempoInicio;
                 somaTempoTotal = (somaTempoTotal + tempoTotal);
@@ -48,9 +61,9 @@ public class BubbleSortTime implements ITime {
     }
 
     @Override
-    public void exibirTabelas(){
+    public void exibirTabelas(String sortName){
             
-        System.out.println("### Bubble sort ###" );
+        System.out.println("### "+ sortName +" sort ###" );
         System.out.println("Entrada - Media de tempo" );
 
         for(int c=0; c<19; c++){
