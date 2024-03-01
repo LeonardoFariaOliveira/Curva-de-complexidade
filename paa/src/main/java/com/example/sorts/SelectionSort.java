@@ -1,12 +1,16 @@
 package com.example.sorts;
 
+import java.util.Arrays;
+
 public class SelectionSort implements ISort {
     
     @Override
-    public int[] sort(int[] array){
+    public void sort(Integer[] array, String caso){
 
         //recebo o tamanho do array
         int tamanhoArray = array.length;
+
+        Integer[] newArray = Arrays.copyOf(array, array.length);;
 
         //percorro o array passado como parametro
         for(int i = 0; i<= tamanhoArray-1; i++){
@@ -29,16 +33,16 @@ public class SelectionSort implements ISort {
  
 */
             for(int j = i+1; j <=  tamanhoArray-1; j++){
-                if(array[j] < array[indexMenor]){
+                if(newArray[j] < newArray[indexMenor]){
                     indexMenor = j;
                 }
             }
             //Passo o menor valor para posições iniciais
-            array[i] = array[indexMenor];
+            newArray[i] = newArray[indexMenor];
             
         }
 
-        return array;
+
     }
 
 }

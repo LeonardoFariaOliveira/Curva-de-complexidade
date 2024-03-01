@@ -2,6 +2,6 @@ package com.example.sorts;
 
 public interface ISort {
 
-    public int[] sort(int[] array);
+    public void sort(Integer[] array, String caso);
     
 } 
